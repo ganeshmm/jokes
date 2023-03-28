@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles.css">
+
+    <link rel="shortcut icon" type="image/png" href="/static/{{ favicon | default('rofl', true) }}.png">
+    <title>Giggle Gauge</title>
+  </head>
+  <body>
+    <h1 id="title" class="text-center">Giggle Gauge</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-3 mr-5">
+            <h4 class="text-center mb-3">Your funniest jokes so far:</h1>
+            {% for laughter, joke in heap %}
+            <p class="text-center">{{ joke }} <em>({{ laughter | float | round(1)}})</em></p>
+            {% endfor %}
+        </div>
+        <div class="col-md-3">
+            <form action="/laugh" method="post">
+                <label for="joke-group">Make me laugh!</label>
+                <div name="joke-group" class="input-group mb-2">
+                    <textarea name="joke" class="form-control" id="joke" placeholder="Enter a joke"></textarea>
+                </div>
+                <button class="btn btn-primary mb-3">Gauge</button>
+            </form>
+        </div>
+        <div id="laughter" class="col-md-3 mr-5">
+            <p id="emoji" class="text-center" style="font-size: 128px;">{{ emoji }}</p>
+            <p id="score" class="text-center">Score: {{ laughter | default(0.0, true) | round(1) }}</p>
+        </div>
+    </div>
+
+    <div class="fixed-bottom text-center">
+      <p class="mb-1">Need ideas? Check out <a href="https://www.reddit.com/r/Jokes">r/Jokes</a></p>
+      <p class="mb-1">Made with &#x1F923 by Ganesh Murugappan</p>
+      <p class="mb-5"><a href="https://github.com/ganeshmm/jokes">GitHub</a> | <a href="https://linkedin.com/in/ganeshmm">Linkedin</a></p>
+    </div>
+  </body>
+</html>
