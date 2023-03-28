@@ -1,0 +1,13 @@
+#title {
+    margin-top: 64px;
+    margin-bottom: 32px;
+}
+
+#joke {
+    min-height: 128px;
+    max-height: 256px;
+}
+
+#emoji {
+    margin-bottom: -16px;
+}
