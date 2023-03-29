@@ -15,7 +15,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-3 mr-5">
-            <h4 class="text-center mb-3">Your funniest jokes so far:</h1>
+            <h5 class="text-center mb-3">Your funniest jokes so far:</h1>
             {% for laughter, joke in heap %}
             <p class="text-center">{{ joke }} <em>({{ laughter | float | round(1)}})</em></p>
             {% endfor %}
@@ -26,19 +26,20 @@
                 <div name="joke-group" class="input-group mb-2">
                     <textarea name="joke" class="form-control" id="joke" placeholder="Enter a joke"></textarea>
                 </div>
-                <button class="btn btn-primary mb-3">Gauge</button>
+                <button class="btn btn-primary mb-3" type="submit">Gauge</button>
             </form>
         </div>
         <div id="laughter" class="col-md-3 mr-5">
             <p id="emoji" class="text-center" style="font-size: 128px;">{{ emoji }}</p>
-            <p id="score" class="text-center">Score: {{ laughter | default(0.0, true) | round(1) }}</p>
+            <p id="score" class="text-center"><em>Score: {{ laughter | default(0.0, true) | round(1) }}</em></p>
+            <p class="text-center">{{ prev_joke }}</p>
         </div>
     </div>
 
     <div class="fixed-bottom text-center">
       <p class="mb-1">Need ideas? Check out <a href="https://www.reddit.com/r/Jokes">r/Jokes</a></p>
-      <p class="mb-1">Made with &#x1F923 by Ganesh Murugappan</p>
-      <p class="mb-5"><a href="https://github.com/ganeshmm/jokes">GitHub</a> | <a href="https://linkedin.com/in/ganeshmm">Linkedin</a></p>
+      <p class="mb-1">See the code on <a href="https://github.com/ganeshmm/jokes">GitHub</a></p>
+      <p class="mb-5">Made with &#x1F923 by <a href="https://linkedin.com/in/ganeshmm">Ganesh Murugappan</a></p>
     </div>
   </body>
 </html>

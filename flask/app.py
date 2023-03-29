@@ -19,22 +19,16 @@ def index():
 
 @app.route('/laugh', methods=['POST'])
 def laugh():
-    joke = request.form['joke']
+    joke = request.form['joke'].replace('\n', ' ')
     laughter = get_laughter(joke)
     add_to_heap(joke, laughter)
     emoji, favicon = choose_emoji(laughter)
-    data = {
-        'laughter': laughter,
-        'heap': sorted(heap, reverse=True),
-        'emoji': emoji,
-        'favicon': favicon
-    }
-    return data
-    # return render_template('index.html', 
-    #                        laughter=laughter, 
-    #                        heap=sorted(heap, reverse=True), 
-    #                        emoji=emoji,
-    #                        favicon=favicon)
+    return render_template('index.html', 
+                           laughter=laughter, 
+                           heap=sorted(heap, reverse=True), 
+                           emoji=emoji,
+                           favicon=favicon,
+                           prev_joke=joke)
 
 def get_laughter(joke):
     encoded_joke = tokenizer(joke, return_tensors='pt')
