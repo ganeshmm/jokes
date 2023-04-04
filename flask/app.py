@@ -23,6 +23,7 @@ def laugh():
     laughter = get_laughter(joke)
     add_to_heap(joke, laughter)
     emoji, favicon = choose_emoji(laughter)
+
     return render_template('index.html', 
                            laughter=laughter, 
                            heap=sorted(heap, reverse=True), 
@@ -33,6 +34,7 @@ def laugh():
 def get_laughter(joke):
     encoded_joke = tokenizer(joke, return_tensors='pt')
     laughter = model(**encoded_joke).logits.item()
+    laughter = round(30.898 * laughter)
     return laughter
 
 def add_to_heap(joke, laughter):
@@ -42,13 +44,13 @@ def add_to_heap(joke, laughter):
         heapq.heappushpop(heap, (laughter, joke))
 
 def choose_emoji(laughter):
-    if laughter < 1.0:
+    if laughter < 20.0:
         return '\U0001F610', 'neutral' # neutral face
-    elif laughter < 2.0:
+    elif laughter < 40.0:
         return '\U0001F642', 'smile' # slightly smiling face
-    elif laughter < 3.0:
+    elif laughter < 60.0:
         return '\U0001F601', 'beaming' # beaming face with smiling eyes
-    elif laughter < 4.0:
+    elif laughter < 80.0:
         return '\U0001F602', 'tears' # face with tears of joy
     else:
         return '\U0001F923', 'rofl' # rolling on the floor laughing
