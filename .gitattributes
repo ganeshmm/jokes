@@ -1,1 +1,1 @@
-*.pth filter=lfs diff=lfs merge=lfs -text
+models/model-2.pth filter=lfs diff=lfs merge=lfs -text

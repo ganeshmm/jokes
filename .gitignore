@@ -1,7 +1,8 @@
 *.DS_STORE
 *.tsv
 .ipynb_checkpoints/
-*.pth
+models/model.pth
+models/model-1.pth
 
 *.pyc
 __pycache__/
