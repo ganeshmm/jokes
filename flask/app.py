@@ -5,13 +5,13 @@ from transformers import DistilBertTokenizer
 
 app = Flask(__name__)
 
-model = torch.load('../models/model.pth', map_location=torch.device('cpu'))
+model = torch.load('../models/model-2.pth', map_location=torch.device('cpu'))
 model.eval()
 
 tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased', use_fast=True)
 
 heap = list()
-MAX_HEAP_SIZE = 5
+MAX_HEAP_SIZE = 3
 
 @app.route('/')
 def index():
